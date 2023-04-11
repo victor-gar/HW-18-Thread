@@ -1,6 +1,7 @@
 import Foundation
 
 //MARK: - Struct Chip
+
 public struct Chip {
     public enum ChipType: UInt32 {
         case small = 1
