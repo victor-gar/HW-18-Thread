@@ -27,5 +27,3 @@ public struct Chip {
         sleep(UInt32(soderingTime))
     }
 }
-
-
