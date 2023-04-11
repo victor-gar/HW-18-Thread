@@ -1,5 +1,6 @@
 import Foundation
 
+//MARK: - Struct Chip
 public struct Chip {
     public enum ChipType: UInt32 {
         case small = 1
@@ -7,6 +8,8 @@ public struct Chip {
         case big
     }
     
+    //MARK: Make Chip
+
     public let chipType: ChipType
     
     public static func make() -> Chip {
@@ -16,7 +19,9 @@ public struct Chip {
         
         return Chip(chipType: chipType)
     }
-    
+
+    //MARK: Sodering Chip
+
     public func sodering() {
         let soderingTime = chipType.rawValue
         sleep(UInt32(soderingTime))

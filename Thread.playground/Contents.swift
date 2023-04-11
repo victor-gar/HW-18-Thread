@@ -1,3 +1,8 @@
-import Cocoa
+import PlaygroundSupport
+import Foundation
 
-var greeting = "Hello, playground"
+//MARK: Count the number of chips
+//MARK: - Storage class
+//MARK: Add Chips to storage
+//MARK: - Generation Thread
+//MARK: - Work Thread
