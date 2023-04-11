@@ -3,10 +3,10 @@ import Foundation
 //MARK: - Work Thread
 
 public class WorkThread: Thread {
-    
-    private let storage: Storage
 
-    public init(storage: Storage) {
+    private let storage: StorageThread
+
+    public init(storage: StorageThread) {
         self.storage = storage
     }
 
@@ -22,7 +22,7 @@ public class WorkThread: Thread {
             storage.pop().sodering()
             print("""
             \n
-            Чип был припаян. Чип в хранилище \(storage.count)
+            чип был припаян. Чип в хранилище \(storage.count)
             """)
             if storage.count < 1 {
                 GenerationThread.boolPredicate = false
@@ -30,3 +30,4 @@ public class WorkThread: Thread {
         }
     }
 }
+
