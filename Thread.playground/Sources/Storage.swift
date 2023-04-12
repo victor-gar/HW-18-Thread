@@ -1,33 +1,48 @@
 import Foundation
 
 //MARK: - Storage Thread
+// Хранилище для микросхем
 
 public class StorageThread {
-
-    var array = [Chip]()
+    
+    public init() {}
+    
+    private var array: [Chip] = []
     private let lock = NSLock()
 
-    public var count: Int {
+    // Добавление новой микросхемы в хранилище
+    func push(chip: Chip) {
         lock.lock()
-        let value = array.count
-        lock.unlock()
-        return value
+        defer {
+            lock.unlock()
+        }
+        array.append(chip)
     }
-
-    public init() {}
-
-    public func push(newElement: Chip) {
+        
+        // Получение микросхемы из хранилища
+    func pop() -> Chip? {
         lock.lock()
-        self.array.append(newElement)
-        lock.unlock()
+        defer {
+            lock.unlock()
+        }
+        return array.popLast()
     }
-
-    public func pop() -> Chip {
+        
+        // Получение количества микросхем в хранилище
+    func count() -> Int {
         lock.lock()
-        let newValue = array.removeLast()
-        lock.unlock()
-        return newValue
+        defer {
+            lock.unlock()
+        }
+        return array.count
     }
 }
 
+
+
+    
+  
+    
+
+    
 

@@ -1,31 +1,25 @@
 import Foundation
 
 //MARK: - Work Thread
+// Рабочий поток
 
 public class WorkThread: Thread {
-
-    private let storage: StorageThread
-
+    
+    let storage: StorageThread
+    
     public init(storage: StorageThread) {
         self.storage = storage
     }
-
+    
     public override func main() {
-        work()
-    }
-
-    private func work() {
-        for _ in 1...10 {
-            while (!GenerationThread.boolPredicate) {
-                GenerationThread.condition.wait()
-            }
-            storage.pop().sodering()
-            print("""
-            \n
-            чип был припаян. Чип в хранилище \(storage.count)
-            """)
-            if storage.count < 1 {
-                GenerationThread.boolPredicate = false
+        while true {
+            if let chip = storage.pop() {
+                print("WorkThread: Got chip \(chip.chipType)")
+                chip.sodering()
+                print("WorkThread: Soldered chip \(chip.chipType)")
+            } else {
+                // Если в хранилище нет микросхем, ждем 1 секунду и пытаемся получить их снова
+                WorkThread.sleep(forTimeInterval: 1)
             }
         }
     }
